@@ -6,7 +6,11 @@ import { ReactNode } from "react";
 export default function Navcrumbs(props: {children: ReactNode}) {
     const router = useRouter()
     return <Breadcrumbs>
-    <Typography onClick={() => {router.push('/')}} sx={{
+    <Typography onClick={() => {
+        if(router.pathname  !== "/"){
+            router.push('/')
+        }
+    }} sx={{
         ":hover" : {
             color: 'black'
         },

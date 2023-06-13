@@ -9,7 +9,7 @@ export default function DiscordRoles() {
         router.push('/add_roles')
     }
     return <Box sx={{
-        width: '40%'
+        width: '90%'
     }}>
         <Button sx={{
             marginBottom: '2rem'

@@ -1,5 +1,6 @@
 import { Button, Card, Grid, Typography, FormControlLabel, Checkbox, CardHeader, Avatar } from "@mui/material";
 import React from "react";
+import { BsDiscord} from 'react-icons/bs';
 
 interface SelectablePacket {
     id: string;
@@ -22,8 +23,10 @@ export interface MultipleSelectCardProp {
 
 
 const Item = function({children}: {children: React.ReactNode}) {
-    return <Card variant="outlined" sx={{
-        paddingX: '0.5rem'
+    return <Card  variant="outlined" sx={{
+        paddingX: '1rem',
+        bgcolor: 'secondary.main',
+        paddingY: '0.5rem'
     }} >{children}</Card>
 }
 
@@ -44,14 +47,17 @@ export default function MultipleSelectCard(props: MultipleSelectCardProp) {
 
     const getNonEditableAvatar = (option: SelectablePacket) => {
         if (option.avatar) return <Avatar src={option.avatar} />
+        return <BsDiscord fontSize={'2rem'} />
     }
     return <Card sx={{
-        width: '60%',
+        width: '70%',
+        // maxWidth: '100%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        paddingY: '1rem',
+        paddingY: '2rem',
         paddingX: '2rem',
+        borderColor: 'primary.light'
 
     }} variant="outlined">
         <Typography variant="h4" sx={{
@@ -62,7 +68,7 @@ export default function MultipleSelectCard(props: MultipleSelectCardProp) {
         <Grid container spacing={{ md: 3 }} columns={{ md: 12 }}>
             {props.options.map((option) => (
                 <Grid item md={6} key={option.id}>
-                    <Item>
+                    <Item >
                         {
                             props.editable === false? 
                           
@@ -75,11 +81,15 @@ export default function MultipleSelectCard(props: MultipleSelectCardProp) {
                                     avatar={getNonEditableAvatar(option)}
                                     subheader={option.name}
                                     subheaderTypographyProps={{
-                                        color: 'black'
+                                        color: 'black',
+                                        fontWeight: 'medium'
                                     }}
                                 />
                            
                             :<FormControlLabel
+                            sx={{
+                                
+                            }}
                         label={option.name}
                         control = {getControl(option)}
                         />

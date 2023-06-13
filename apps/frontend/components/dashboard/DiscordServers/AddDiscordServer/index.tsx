@@ -5,5 +5,5 @@ export default function AddDiscordServer() {
     const handleClick = async () => {
         signIn('discord_bot')
     }
-    return <Button onClick={() => {handleClick()}} variant="contained">Add Discord Server</Button>
+    return <Button disableElevation onClick={() => {handleClick()}} variant="contained">Add Discord Server</Button>
 }

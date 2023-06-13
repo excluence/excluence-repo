@@ -24,15 +24,14 @@ export default function AddCollections(props: AddCollectionsProps) {
         setSelectedContracts({...selectedContracts})
     }
     return <MultipleSelectCard
-        options={collections.map((collection) => ({id: collection, name: collection}))}
+        options={collections.map((collection) => ({id: collection, name: `${collection.substring(0,7)}...${collection.substring(collection.length - 8)}`}))}
         selected={selectedContracts}
         immutableSelections={[]}
         onSelect={handleOnSelect}
-        title="Add Collections"
+        title="Add NFTs"
         onNext={() => {
             props.onNext(Object.keys(selectedContracts))
         }}
         nextButtonTitle="Create Role"
-        editable={false}
     />
 }

@@ -1,10 +1,11 @@
-import { Box, List } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import AddDiscordServer from "./AddDiscordServer";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { useEffect } from "react";
 import { ProfileGuild, addGuild, getMyProfiles } from "../../../redux/dashboard";
 import DiscordServerCard from "./DiscordServerCard";
 import { useSession } from "next-auth/react";
+import Navcrumbs from "../../shared/Navcrumbs";
 
 export default function DiscordServers() {
     const {data} = useSession();
@@ -24,9 +25,21 @@ export default function DiscordServers() {
     }, [])
     // console.log(profiles)
     return <Box sx={{
-        width: '40%'
+
     }}>
-        <AddDiscordServer />
+        <Box sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginBottom: '2rem',
+                alignItems: 'center',
+            }}>
+                <Navcrumbs>
+                    <Typography>Created NFTs</Typography>
+                </Navcrumbs>
+                <AddDiscordServer />
+            </Box>
+        
         <Box sx={{
             marginTop: '2rem'
         }}>

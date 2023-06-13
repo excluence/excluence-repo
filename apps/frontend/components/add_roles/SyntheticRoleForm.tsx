@@ -25,10 +25,10 @@ export default function SyntheticRoleForm(props: SyntheticRoleFormProps) {
         paddingX: '2rem'
 
     }} variant="outlined">
-        <Typography variant="h4" sx={{
+        {/* <Typography variant="h4" sx={{
             alignSelf: 'center',
             fontWeight: 'bold'
-        }} >Create Role</Typography>
+        }} >Create Role</Typography> */}
         <TextField
           required
           id="outlined-required"

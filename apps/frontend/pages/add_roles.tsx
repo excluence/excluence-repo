@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import { Header } from "../components/header/Header";
 import PermissionsSelector from "../components/add_roles/PermissionsSelector";
 import { useEffect, useState } from "react";
@@ -105,8 +105,21 @@ export default function AddRoles() {
     }
     
     
-    return <Box sx={{width:'100vw'}}>
-        <Header />
+    return <Box sx={{width:'90%', paddingTop: '2rem'}}>
+        <Stepper activeStep={pageIndex} alternativeLabel>
+            <Step key={0}>
+                <StepLabel>Role details</StepLabel>
+            </Step>
+            <Step key={1}>
+                <StepLabel>Set Permissions</StepLabel>
+            </Step>
+            <Step key={2}>
+                <StepLabel>Select Guilds</StepLabel>
+            </Step>
+            <Step key={3}>
+                <StepLabel>Assign Roles</StepLabel>
+            </Step>
+      </Stepper>
         <Box sx={{
             width: '100%',
             display: 'flex',

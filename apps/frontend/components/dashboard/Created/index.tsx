@@ -5,6 +5,7 @@ import ImportCollection from "./ImportCollection";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { getAllMyNFTCollections } from "../../../redux/dashboard";
 import { useRouter } from "next/router";
+import Navcrumbs from "../../shared/Navcrumbs";
 
 export default function Created() {
     const [openModal, setOpenModal] = useState(false)
@@ -26,12 +27,9 @@ export default function Created() {
                 marginBottom: '2rem',
                 alignItems: 'center',
             }}>
-                <Breadcrumbs>
-                    <Typography >Dashboard</Typography>
-                    <Typography sx={{
-                        color: 'primary.main'
-                    }}>Created NFTs</Typography>
-                </Breadcrumbs>
+                <Navcrumbs>
+                    <Typography>Created NFTs</Typography>
+                </Navcrumbs>
                 <Button disableElevation onClick={() => {
                     setOpenModal(true)
                 }} variant="contained">Import Collection</Button>

@@ -1,15 +1,11 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
-import { signIn, useSession } from "next-auth/react";
-import { Header } from "../components/header/Header";
-import { Box , Tabs, Tab, Typography} from "@mui/material";
-import { useState } from "react";
+import { Box} from "@mui/material";
 import DiscordServers from "../components/dashboard/DiscordServers";
 import Created from "../components/dashboard/Created";
 import DiscordRoles from "../components/dashboard/DiscordRoles";
 import Collected from "../components/dashboard/Collected";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { dashboardActions } from "../redux/dashboard";
+import { useAppSelector } from "../redux/hooks";
 
 
 const customNodeOptions = {
@@ -22,11 +18,13 @@ const customNodeOptions = {
 
 const Home: NextPage = () => {
 
-  const [value] = useAppSelector((state) => [state.dashboard.tabIndex]);
+  const [value, address] = useAppSelector((state) => [state.dashboard.tabIndex, state.login.address]);
+
 
 
 
   function getTabPanel() {
+    if(!address) return;
     switch(value) {
       case 0: 
         return <Created />;
