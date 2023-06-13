@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardHeader, Tab, Tabs, Typography } from "@mui/material";
+import { Avatar, Box, Breadcrumbs, Card, CardHeader, Tab, Tabs, Typography } from "@mui/material";
 import { Header } from "../../components/header/Header";
 import { useRouter } from "next/router";
 import { ThirdwebNftMedia, useContract, useNFT } from "@thirdweb-dev/react";
@@ -10,6 +10,7 @@ import { discordIcon } from "../../constant";
 import MultipleSelectCard from "../../components/shared/MultipleSelectCard";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { findMySyntheticRoles } from "../../redux/dashboard";
+import Navcrumbs from "../../components/shared/Navcrumbs";
 
 interface CollectionGuildData {
     guildId: string;
@@ -91,10 +92,15 @@ export default function CollectionPage() {
 
     const getNFTHeader = () => {
         if (!nft) return <></>
-        return <Box sx={{width: '100%', display: 'flex', flexDirection: 'column'}}>
-            <ThirdwebNftMedia metadata={nft.metadata} />
+        return <Box sx={{width: '100%', display: 'flex', flexDirection: 'column', marginTop: '1rem'}}>
+            <ThirdwebNftMedia style={{
+                width: '20%',
+                height: '20%',
+                border: '2px solid',
+                borderColor: 'primary.light'
+            }} metadata={nft.metadata} />
             <Typography variant="h5" sx={{
-                marginTop: '2rem',
+                marginTop: '1.5rem',
                 fontWeight: 'bold'
             }}>{nft.metadata.name}</Typography>
             <Typography>
@@ -154,18 +160,25 @@ export default function CollectionPage() {
 
 
     return <Box sx={{
-        width: '100%'
+        width: '90%',
+        paddingX: '5%',
+        paddingTop: '2rem'
     }}>
-        <Header />
         <Box
             sx={{
-                paddingX:'5rem',
+                // paddingX:'5rem',
                 display: 'flex',
                 flexDirection: 'column'
             }}
         >
+            <Navcrumbs>
+                    <Typography >Collection</Typography>
+                    <Typography sx={{
+                        color: 'primary.main'
+                    }}>{address}</Typography>
+            </Navcrumbs>
             {getNFTHeader()}
-            <Box sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: '2rem' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: '1rem' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Connected Roles"  />
                     <Tab label="Connected Guilds"  />

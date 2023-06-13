@@ -1,6 +1,6 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { Box, CircularProgress, Modal, Typography } from "@mui/material";
+import { Alert, Box, CircularProgress, Modal, Snackbar, Typography } from "@mui/material";
 import { globalActions } from "../../redux/global";
 import Sidebar from "./Sidebar";
 
@@ -18,20 +18,23 @@ const modalStyle = {
     justifyContent: 'center'
   };
 
-const errorModalStyle = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'red',
-    color: 'white',
-    // border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-    display: 'flex',
-    justifyContent: 'center'
-};
+// const errorModalStyle = {
+//     position: 'absolute' as 'absolute',
+//     top: '50%',
+//     left: '50%',
+//     transform: 'translate(-50%, -50%)',
+//     width: 400,
+//     bgcolor: 'red',
+//     color: 'white',
+//     // border: '2px solid #000',
+//     boxShadow: 24,
+//     p: 4,
+//     display: 'flex',
+//     justifyContent: 'center'
+// };
+
+
+   
 
 export function Layout({children}: {children: React.ReactNode}) {
     const [loading, error] = useAppSelector((state) => [state.global.loading, state.global.error]);
@@ -60,15 +63,10 @@ export function Layout({children}: {children: React.ReactNode}) {
           <CircularProgress />
         </Box>
     </Modal>
-    <Modal
-        open={error !== null}
-        onClose={() => {
+    <Snackbar open={error !== null}  onClose={() => {
             dispatch(globalActions.setError(null))
-        }}
-    >
-        <Box sx={errorModalStyle}>
-          <Typography>{error} </Typography>
-        </Box>
-    </Modal>
+        }} >
+        <Alert severity="error">{error}</Alert>
+    </Snackbar>
     </Box>;
 }

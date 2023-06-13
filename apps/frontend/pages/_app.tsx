@@ -13,6 +13,7 @@ import { activeChain } from "../constant";
 import { Box, ThemeProvider } from "@mui/material";
 import { theme } from "../themes";
 import Sidebar from "../components/shared/Sidebar";
+// import ErrorBoundary from "../components/shared/ErrorBoundary";
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -23,13 +24,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
     <Provider store={store}>
-    <ThirdwebProvider activeChain={activeChain}>
-      <SessionProvider session={pageProps.session}>
+      {/* <ErrorBoundary> */}
+        <ThirdwebProvider activeChain={activeChain}>
+        <SessionProvider session={pageProps.session}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-      </SessionProvider> 
-    </ThirdwebProvider>
+        </SessionProvider> 
+      </ThirdwebProvider>
+    {/* </ErrorBoundary> */}
     </Provider>
     </ThemeProvider>
   );

@@ -18,13 +18,13 @@ export default function Created() {
     },[]);
 
     const router = useRouter();
-    return <Box >
+    return <Box sx={{}}>
             <Box sx={{
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'space-between',
                 marginBottom: '2rem',
-                alignItems: 'center'
+                alignItems: 'center',
             }}>
                 <Breadcrumbs>
                     <Typography >Dashboard</Typography>
@@ -40,13 +40,14 @@ export default function Created() {
             <Box sx={{
                 width: '100%',
                 display: 'flex',
-                justifyContent: 'center'
+                // justifyContent: 'center',
+                flexWrap: 'wrap',
             }}>
-                <Box sx={{
+                {/* <Box sx={{
                     width: '80%',
                     display: 'flex',
                     flexWrap: 'wrap',
-                }}>
+                }}> */}
                     {
                         createdCollections.map((collection, index) => {
                             return <NFTCard key={index} address={collection} onClick={() => {
@@ -54,7 +55,7 @@ export default function Created() {
                             }} />
                         } )
                     }
-            </Box>
+            {/* </Box> */}
         </Box>
 
     </Box>

@@ -43,7 +43,7 @@ const Home: NextPage = () => {
   return (
     <Box width={'90%'} sx={{
       paddingX: '5%',
-      paddingY: '2rem'
+      paddingY: '2rem',
     }}>
       <main className={styles.main}>
         {/* <Box sx={{
