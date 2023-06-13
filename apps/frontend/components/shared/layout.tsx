@@ -48,7 +48,8 @@ export function Layout({children}: {children: React.ReactNode}) {
         </Box>
         <Box sx={{
             overflowY: 'auto',
-            width: '70%'
+            width: '80%',
+            height: '100vh'
         }}>{children}</Box>
     
     <Modal

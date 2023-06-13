@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Breadcrumbs, Button, Typography } from "@mui/material";
 import NFTCard from "../../NFTCard";
 import { useState, useEffect } from "react";
 import ImportCollection from "./ImportCollection";
@@ -22,10 +22,17 @@ export default function Created() {
             <Box sx={{
                 width: '100%',
                 display: 'flex',
-                justifyContent: 'center',
-                marginBottom: '2rem'
+                justifyContent: 'space-between',
+                marginBottom: '2rem',
+                alignItems: 'center'
             }}>
-                <Button onClick={() => {
+                <Breadcrumbs>
+                    <Typography >Dashboard</Typography>
+                    <Typography sx={{
+                        color: 'primary.main'
+                    }}>Created NFTs</Typography>
+                </Breadcrumbs>
+                <Button disableElevation onClick={() => {
                     setOpenModal(true)
                 }} variant="contained">Import Collection</Button>
                 <ImportCollection open={openModal} handleClose={() => {setOpenModal(false)}} />

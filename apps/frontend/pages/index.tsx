@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { signIn, useSession } from "next-auth/react";
 import { Header } from "../components/header/Header";
-import { Box , Tabs, Tab} from "@mui/material";
+import { Box , Tabs, Tab, Typography} from "@mui/material";
 import { useState } from "react";
 import DiscordServers from "../components/dashboard/DiscordServers";
 import Created from "../components/dashboard/Created";
@@ -21,22 +21,9 @@ const customNodeOptions = {
 
 
 const Home: NextPage = () => {
-  // const {data} = useSession();
-
-  // const [value, setValue] = useState(0);
-
-  
 
   const [value] = useAppSelector((state) => [state.dashboard.tabIndex]);
-  const dispatch = useAppDispatch();
 
-  const setValue = (index: number) => {
-    dispatch(dashboardActions.setTabIndex(index));
-  }
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
 
 
   function getTabPanel() {
@@ -54,28 +41,28 @@ const Home: NextPage = () => {
 
 
   return (
-    <Box width={'100%'}>
+    <Box width={'90%'} sx={{
+      paddingX: '5%',
+      paddingY: '2rem'
+    }}>
       <main className={styles.main}>
-        <Box sx={{width: '100%'}}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-              <Tab label="Created"  />
-              <Tab label="Collected"  />
-              <Tab label="Discord Servers" />
-              <Tab label="Discord Roles" />
-        </Tabs>
-          </Box>
+        {/* <Box sx={{
+          width: '90%',
+          paddingX: '5%',
+          paddingY: '2rem'
+        }}>
+          <Typography>Created NFTs</Typography>
         </Box>
         <Box sx={{
           width: '100%', 
           display: 'flex', 
           justifyContent: 'center',
           paddingY: '2rem'
-          }}>
+          }}> */}
           {
             getTabPanel()
           }
-        </Box>
+        {/* </Box> */}
       </main>
     </Box>
   );
