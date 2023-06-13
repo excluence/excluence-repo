@@ -1,7 +1,8 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Box, CircularProgress, Modal, Typography } from "@mui/material";
-import { globalActions } from "../redux/global";
+import { globalActions } from "../../redux/global";
+import Sidebar from "./Sidebar";
 
 const modalStyle = {
     position: 'absolute' as 'absolute',
@@ -35,8 +36,21 @@ const errorModalStyle = {
 export function Layout({children}: {children: React.ReactNode}) {
     const [loading, error] = useAppSelector((state) => [state.global.loading, state.global.error]);
     const dispatch = useAppDispatch();
-    return <>
-    {children}
+    return <Box width={'100vw'} sx={{
+        display: 'flex',
+        overflowY: 'hidden'
+    }}>
+        <Box sx={{
+            width: '20%',
+            height: '100vh'
+        }}>
+            <Sidebar />
+        </Box>
+        <Box sx={{
+            overflowY: 'auto',
+            width: '70%'
+        }}>{children}</Box>
+    
     <Modal
         open={loading}
         onClose={() => {}}
@@ -55,5 +69,5 @@ export function Layout({children}: {children: React.ReactNode}) {
           <Typography>{error} </Typography>
         </Box>
     </Modal>
-    </>;
+    </Box>;
 }

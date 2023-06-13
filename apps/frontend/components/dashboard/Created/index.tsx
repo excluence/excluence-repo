@@ -20,7 +20,7 @@ export default function Created() {
     const router = useRouter();
     return <Box >
             <Box sx={{
-                width: '100vw',
+                width: '100%',
                 display: 'flex',
                 justifyContent: 'center',
                 marginBottom: '2rem'

@@ -8,8 +8,11 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { Layout } from "./layout";
+import { Layout } from "../components/shared/layout";
 import { activeChain } from "../constant";
+import { Box, ThemeProvider } from "@mui/material";
+import { theme } from "../themes";
+import Sidebar from "../components/shared/Sidebar";
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -18,6 +21,7 @@ import { activeChain } from "../constant";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
+    <ThemeProvider theme={theme}>
     <Provider store={store}>
     <ThirdwebProvider activeChain={activeChain}>
       <SessionProvider session={pageProps.session}>
@@ -27,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </SessionProvider> 
     </ThirdwebProvider>
     </Provider>
+    </ThemeProvider>
   );
 }
 

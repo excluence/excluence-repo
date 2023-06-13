@@ -3,7 +3,7 @@ import WalletButton from "../WalletButton";
 
 export function Header() {
     return <Box sx={{
-        width: '100vw',
+        width: '100%',
         paddingY: '1rem',
         paddingX: '1.5rem',
         display: 'flex',

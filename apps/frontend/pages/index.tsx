@@ -43,9 +43,8 @@ const Home: NextPage = () => {
 
 
   return (
-    <div className={styles.container}>
+    <Box width={'100%'}>
       <main className={styles.main}>
-        <Header />
         <Box sx={{width: '100%'}}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -67,7 +66,7 @@ const Home: NextPage = () => {
           }
         </Box>
       </main>
-    </div>
+    </Box>
   );
 };
 

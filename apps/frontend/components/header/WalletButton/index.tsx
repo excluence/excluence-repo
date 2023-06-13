@@ -1,10 +1,11 @@
-import { Button, ButtonGroup } from "@mui/material";
+import { Button, ButtonGroup, Typography } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { Web3Auth } from "@web3auth/modal";
 import {getAddress, login, loginActions} from "../../../redux/login";
 import { useEffect } from "react";
 import { getAuthorizationToken } from "../../../redux/utils";
 import {WALLET_ADAPTERS} from '@web3auth/base'
+import ProfileCard from "../ProfileCard";
 
 export default function WalletButton() {
     let web3auth: Web3Auth;
@@ -40,16 +41,16 @@ export default function WalletButton() {
     }
 
     const loginAfterConnection = async () => {
-        try {
+        // try {
             const userInfo = await web3auth.authenticateUser();
             dispatch(login(userInfo.idToken));
-        } catch (e) {}
+        // } catch (e) {}
     }
 
     useEffect(() => {
         if (typeof window !==  'undefined') {
             const token = getAuthorizationToken()
-            if (address === undefined) {
+            if (address === undefined && web3auth.connected) {
                loginAfterConnection();
             }
         }
@@ -58,18 +59,28 @@ export default function WalletButton() {
         <>
             {
                 address === undefined?
-                <Button disableElevation onClick={() => {handleOnConnectClick()}} variant="contained">Connect Wallet</Button>:
-                <ButtonGroup variant="outlined" aria-label="outlined primary button group">
-                    <Button onClick={async () => {
-                        await web3auth.logout()
-                        dispatch(loginActions.logOut())
-                    }} variant="outlined" disableElevation sx={{
-                        borderColor: 'red',
-                        color: 'red'
-                    }}>X</Button>
-                    <Button variant="outlined">{address}</Button>
-
-                </ButtonGroup>
+                <Button disableElevation
+                sx={{
+                    borderRadius: '0.5rem',
+                    paddingY: '0.8rem',
+                    bgcolor: 'white',
+                    color: 'black',
+                    ":hover": {
+                        bgcolor: 'secondary.main',
+                        color: 'black'
+                    },
+                    ":focus":{
+                        bgcolor: 'secondary.main',
+                        color: 'black'
+                    },
+                }} 
+                onClick={() => {handleOnConnectClick()}} variant="contained">
+                    <Typography sx={{fontWeight: 'bold'}}>Connect Wallet</Typography>   
+                </Button>:
+                <ProfileCard address={address} onLogOutClick={async () => {
+                    await web3auth.logout()
+                    dispatch(loginActions.logOut())
+                }} />
             }
         </>
     )
