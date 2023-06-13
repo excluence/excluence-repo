@@ -8,6 +8,8 @@ import DiscordServers from "../components/dashboard/DiscordServers";
 import Created from "../components/dashboard/Created";
 import DiscordRoles from "../components/dashboard/DiscordRoles";
 import Collected from "../components/dashboard/Collected";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { dashboardActions } from "../redux/dashboard";
 
 
 const customNodeOptions = {
@@ -21,7 +23,16 @@ const customNodeOptions = {
 const Home: NextPage = () => {
   // const {data} = useSession();
 
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
+
+  
+
+  const [value] = useAppSelector((state) => [state.dashboard.tabIndex]);
+  const dispatch = useAppDispatch();
+
+  const setValue = (index: number) => {
+    dispatch(dashboardActions.setTabIndex(index));
+  }
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);

@@ -28,6 +28,7 @@ export interface DashboardState {
     hasProfile: boolean;
     fetchedMyProfile: boolean;
     currentCollectedContract?: string;
+    tabIndex: number;
 }
 
 const initialState: DashboardState = {
@@ -41,6 +42,7 @@ const initialState: DashboardState = {
     fetchedSyntheticRoles: false,
     hasProfile: false,
     fetchedMyProfile: false,
+    tabIndex: 0
 }
 
 
@@ -198,6 +200,9 @@ const dashboardSlice = createSlice({
     reducers: {
         setCurrentCollectedContract: (state, action: PayloadAction<string | undefined>) => {
             state.currentCollectedContract = action.payload;
+        },
+        setTabIndex: (state, action: PayloadAction<number>) => {
+            state.tabIndex = action.payload;
         }
     },
     extraReducers: (builder) => {
