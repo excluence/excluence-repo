@@ -2,21 +2,37 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "dotenv -- turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev:frontend": "dotenv -- turbo run dev --filter=frontend",
+    "sb:frontend": "yarn workspace frontend run storybook",
+    "test": "dotenv -e .env.test.local -e .env -- turbo run test",
+    "script": "dotenv -- yarn workspace",
+    "script:test": "dotenv -e .env.test.local -e .env -- yarn workspace",
+    "start": "dotenv -- turbo run start",
+    "start:indexer": "dotenv -- turbo run start --filter=indexer"
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
-    "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "dotenv-cli": "^7.2.1",
     "eslint-config-custom": "*",
-    "prettier": "^2.5.1",
-    "turbo": "^1.9.7"
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "29.5.0",
+    "prettier": "^3.0.0",
+    "ts-node": "10.9.1",
+    "turbo": "^1.9.9"
   },
   "name": "excluence-repo",
   "packageManager": "yarn@1.22.19",
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "eslint": "^8.43.0"
+  }
 }
