@@ -20,9 +20,9 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn workspace frontend install --frozen-lockfile
       - name: Build website
-        run: yarn build
+        run: yarn workspace frontend run build
       - name: Deploy to New branch
         uses: peaceiris/actions-gh-pages@v3
         with:
