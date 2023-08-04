@@ -20,7 +20,9 @@ jobs:
           cache: yarn
       
       - name: Pull all submodules
-        run: git submodule update --recursive --remote
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
       - name: Install dependencies
         run: yarn install
       - name: Build website
