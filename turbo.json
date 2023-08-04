@@ -1,0 +1,37 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [".env"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "backend#build": {
+      "dependsOn": ["parcelQL#build", "^build"],
+      "output": ["dist/**"]
+    },
+    "backend#start": {
+      "dependsOn": ["parcelQL#build", "^start"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "backend#dev": {
+      "dependsOn": ["parcelQL#build", "^dev"],
+      "output": ["dist/**"],
+      "cache": false,
+      "persistent": true
+    },
+    "backend#test": {
+      "dependsOn": ["parcelQL#build", "^test"],
+      "output": ["dist/**"],
+      "cache": false,
+      "persistent": true
+    },
+    "test": {},
+    "start": {}
+  }
+}
